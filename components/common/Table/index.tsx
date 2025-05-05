@@ -2,29 +2,22 @@ import React, { FC } from 'react'
 import { TableProps } from './types'
 import { TableWrapper } from './Table.styles';
 import { RiDeleteBinFill } from "react-icons/ri";
-import {  deleteStudentMutation } from '../../../hooks';
 import { useRouter } from 'next/router';
 
 const Table: FC<TableProps> = (props) => {
-	const { columns = [], dataSrc = [], loading = true } = props;
-
-	const router = useRouter()
-
-	const studentMutation = deleteStudentMutation({
-		onSuccess: () => {
-			console.log("Student deleted:");
-			window.location.reload();
-			// router.push(`/students`);
-		},
-		onError: (err) => {
-			alert("Failed to delte!");
-			console.error(err);
-		}
-	});
+	const { columns = [], dataSrc = [], loading = true,  } = props;
 
 	const handleDelete = async (id: string) => {
-		studentMutation.mutate(id);
-	}
+		if (!id) {
+			console.error("ID ko'rsatilmagan");
+			return;
+		}
+
+		if (!window.confirm("Haqiqatan ham bu ma'lumotni o'chirmoqchimisiz?")) {
+			return;
+		}
+
+	};
 
 	const loadingContent = dataSrc.length === 0 && !!loading
 		? <tr>
@@ -60,10 +53,13 @@ const Table: FC<TableProps> = (props) => {
 							<td>
 								<button
 									style={{ border: "none", backgroundColor: "unset" }}
-									onClick={() => {		
-										console.log(data);				
-										handleDelete(data.id)
-									}}	
+									onClick={() => {
+										if (!data.id) {
+											console.error("Elementning ID'si topilmadi");
+											return;
+										}
+										handleDelete(data.id);
+									}}
 								>
 									<RiDeleteBinFill />
 								</button>

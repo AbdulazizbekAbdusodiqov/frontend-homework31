@@ -11,4 +11,7 @@ export interface TableProps {
     dataSrc?: DefaultObjectType[],
     columns: TableColumn[],
     loading?: boolean,
+    deleteMutation?: {
+        mutate: (id: string) => Promise<void>;
+    };
 }

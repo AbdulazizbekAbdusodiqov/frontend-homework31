@@ -1,7 +1,7 @@
 import { Table } from '@/components'
 import React from 'react'
 import { studentTableCols } from './columns'
-import { useStudents } from '@/hooks'
+import { deleteStudentMutation, useStudents } from '@/hooks'
 
 const StudentsTable = () => {
     const { data: users } = useStudents();

@@ -27,3 +27,15 @@ export const deleteStudent = async (id: string) => {
         alert("Failed to post data!");
     }
 }
+
+
+export const DeleteStudentMutation = ({
+    onSuccess: () => {
+        console.log("Student deleted:");
+        window.location.reload();
+    },
+    onError: (err: unknown) => {
+        alert("Failed to delte!");
+        console.error(err);
+    }
+});

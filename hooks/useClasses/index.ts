@@ -23,6 +23,7 @@ export function createStudentMutation({
         onError
     })
 }
+
 export function deleteStudentMutation({
     onSuccess,
     onError,
