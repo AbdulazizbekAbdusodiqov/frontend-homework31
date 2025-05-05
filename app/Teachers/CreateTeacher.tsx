@@ -1,13 +1,22 @@
-import React, { FormEvent } from 'react'
+import React, { FormEvent, useState } from 'react'
 import { Button, Input } from '@/components'
 import { createTeacherMutation } from '@/hooks'
 import { useRouter } from 'next/router'
 import { TeacherCreateWrapper } from './Teachers.styles'
+import { useParams } from 'next/navigation'
 
-const CreateTeacher = () => {
+const CreateUpdateTeacher = () => {
+
     const router = useRouter();
-
-
+    const [teacherValues, setTEacherValues] = useState({
+        firstName:"",
+        lastName:"",
+        birthDate:"",
+        classes:[]
+    })
+    const params = useParams() 
+    const isEditMode = !!params?.id;
+    
     const teacherMutation = createTeacherMutation({
         onSuccess: (teacher) => {
             console.log("Teacher Created: ", teacher);
@@ -22,25 +31,21 @@ const CreateTeacher = () => {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const {
-            firstName,
-            lastName,
-            birthDate,
-        } = e.target as typeof e.target & {
-            firstName: HTMLInputElement,
-            lastName: HTMLInputElement,
-            birthDate: HTMLInputElement,
-        };
+        
 
         const newTeacher = {
             id: `${Date.now()}`,
-            firstName: firstName.value,
-            lastName: lastName.value,
-            birthDate: birthDate.value,
-            classes:[]
+            firstName: teacherValues.firstName,
+            lastName: teacherValues.lastName,
+            birthDate:teacherValues.birthDate,
+            classes: teacherValues.classes
         }
-
-        teacherMutation.mutate(newTeacher);
+        if(isEditMode){
+            newTeacher.id = params?.id as string
+        }
+        isEditMode 
+        ? teacherMutation.mutate(newTeacher)
+        : teacherMutation.mutate(newTeacher);
     }
 
     return (
@@ -56,4 +61,4 @@ const CreateTeacher = () => {
     )
 }
 
-export default CreateTeacher
+export default CreateUpdateTeacher
