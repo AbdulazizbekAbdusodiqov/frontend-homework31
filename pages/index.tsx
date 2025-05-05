@@ -44,12 +44,12 @@ export default function Home() {
   ]
 
   return (
-    <>
+    <div style={{padding:"10px"}}>
       <h1>Hello World!</h1>
       <button onClick={handleClick}>Change User</button>
 
       <Table columns={columns} dataSrc={users} />
-    </>
+    </div>
   );
 }
 

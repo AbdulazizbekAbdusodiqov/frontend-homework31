@@ -20,6 +20,13 @@
       "lastName": "Nimayev",
       "birthDate": "2025-05-17",
       "classId": "1"
+    },
+    {
+      "id": "1746435972245",
+      "firstName": "Abdulazizbek",
+      "lastName": "Abdusodiqov",
+      "birthDate": "2005-05-05",
+      "classId": "1"
     }
   ],
   "classes": [

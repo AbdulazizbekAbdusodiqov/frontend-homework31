@@ -1,14 +1,22 @@
 export const studentTableCols = [
     {
         title: "First name",
-        dataIndex: "firstName"
+        dataIndex: "firstName",
+        width: 30
     },
     {
         title: "Last name",
-        dataIndex: "lastName"
+        dataIndex: "lastName",
+        width: 30
     },
     {
         title: "Birth date",
-        dataIndex: "birthDate"
+        dataIndex: "birthDate",
+        width: 30
+    },
+    {
+        title:"Actions",
+        dataIndex:"actions",
+        width: 10
     }
 ]

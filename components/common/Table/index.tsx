@@ -1,22 +1,11 @@
 import React, { FC } from 'react'
 import { TableProps } from './types'
 import { TableWrapper } from './Table.styles';
-import { RiDeleteBinFill } from "react-icons/ri";
 
 const Table: FC<TableProps> = (props) => {
-	const { columns = [], dataSrc = [], loading = true,  } = props;
+	const { columns = [], dataSrc = [], loading = true, actionsCol } = props;
 
-	const handleDelete = async (id: string) => {
-		if (!id) {
-			console.error("ID ko'rsatilmagan");
-			return;
-		}
-
-		if (!window.confirm("Haqiqatan ham bu ma'lumotni o'chirmoqchimisiz?")) {
-			return;
-		}
-
-	};
+	
 
 	const loadingContent = dataSrc.length === 0 && !!loading
 		? <tr>
@@ -36,9 +25,9 @@ const Table: FC<TableProps> = (props) => {
 				<thead>
 					<tr>
 						{columns.map(column => (
-							<th key={column.dataIndex}>{column.title}</th>
+							<th style={{width:`${column.width}%`}} key={column.dataIndex}>{column.title}</th>
 						))}
-						<th style={{ width: "40px" }}></th>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -46,23 +35,11 @@ const Table: FC<TableProps> = (props) => {
 					{emptyContent}
 					{dataSrc.map(data => (
 						<tr key={data[columns[0]?.dataIndex ?? 'key']}>
-							{columns.map(col => (
-								<td key={col.dataIndex}>{data[col.dataIndex]}</td>
-							))}
-							<td>
-								<button
-									style={{ border: "none", backgroundColor: "unset" }}
-									onClick={() => {
-										if (!data.id) {
-											console.error("Elementning ID'si topilmadi");
-											return;
-										}
-										handleDelete(data.id);
-									}}
-								>
-									<RiDeleteBinFill />
-								</button>
-							</td>
+							{columns.map(col => {
+								return col.dataIndex === "actions"
+									? <td style={{width:`${col.width}%`}}>{actionsCol}</td>
+									: <td key={col.dataIndex}>{data[col.dataIndex]}</td>
+							})}
 						</tr>
 					))}
 

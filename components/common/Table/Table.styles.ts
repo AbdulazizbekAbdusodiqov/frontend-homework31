@@ -18,10 +18,11 @@ export const TableWrapper = styled.div`
     }
 
     th, td {
-        padding: 8px 6px;
+        padding: 6px 12px;
     }
 
     th {
         background-color: #f0f0f060;
+        text-align: left;
     }
 `;
