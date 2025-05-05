@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { TableProps } from './types'
 import { TableWrapper } from './Table.styles';
 import { RiDeleteBinFill } from "react-icons/ri";
-import { useRouter } from 'next/router';
 
 const Table: FC<TableProps> = (props) => {
 	const { columns = [], dataSrc = [], loading = true,  } = props;

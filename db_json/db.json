@@ -34,6 +34,12 @@
       "name": "Urushqoqlar",
       "studentCount": 1,
       "teacherId": 1
+    },
+    {
+      "id": "1746429036176",
+      "name": "dwdqwdqwdq",
+      "studentCount": 0,
+      "teacherId": ""
     }
   ],
   "teachers": [
@@ -51,6 +57,13 @@
       "firstName": "Abdulazizbek",
       "lastName": "Abdusodiqov",
       "birthDate": "2006-11-11",
+      "classes": []
+    },
+    {
+      "id": "1746426762549",
+      "firstName": "Abdulazizbek",
+      "lastName": "Abdusodiqov",
+      "birthDate": "275760-05-10",
       "classes": []
     }
   ],
