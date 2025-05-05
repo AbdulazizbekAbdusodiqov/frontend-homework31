@@ -39,13 +39,12 @@ const Sidebar = () => {
                             style={{
                                 color: "white",
                                 textDecoration: "none",
-                                border: "1px solid gray",
                                 padding: "10px",
                                 borderRadius: "8px",
                                 transition: "background-color 0.3s ease"
                             }}
                             onMouseEnter={(e) => {
-                                (e.target as HTMLElement).style.backgroundColor = "darkgray";
+                                (e.target as HTMLElement).style.backgroundColor = "#B58E59";
                             }}
                             onMouseLeave={(e) => {
                                 (e.target as HTMLElement).style.backgroundColor = "inherit";

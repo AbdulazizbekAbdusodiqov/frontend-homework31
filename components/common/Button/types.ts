@@ -4,4 +4,5 @@ export interface ButtonProps {
     children?: ReactElement | string,
     title?: string,
     onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
+    href?: string,
 }

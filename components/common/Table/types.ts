@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface DefaultObjectType {
     [key: string]: any;
 }
@@ -12,5 +14,5 @@ export interface TableProps {
     dataSrc?: DefaultObjectType[];
     columns: TableColumn[];
     loading?: boolean;
-    actionsCol?: React.ReactElement;
+    actionsCol?: (data:DefaultObjectType)=>React.ReactElement
 }

@@ -4,29 +4,15 @@
       "id": "1",
       "firstName": "Hoshim",
       "lastName": "Mirzayev",
-      "birthDate": "11-11-2011",
+      "birthDate": "1111-11-22",
       "classId": 2
     },
     {
-      "id": "1746186798757",
-      "firstName": "Ziyodbek",
-      "lastName": "Akhmadjonov",
-      "birthDate": "2025-05-06",
-      "classId": "1"
-    },
-    {
-      "id": "1746186862783",
-      "firstName": "Kimdir",
-      "lastName": "Nimayev",
-      "birthDate": "2025-05-17",
-      "classId": "1"
-    },
-    {
-      "id": "1746435972245",
+      "id": "1746445290314",
       "firstName": "Abdulazizbek",
       "lastName": "Abdusodiqov",
-      "birthDate": "2005-05-05",
-      "classId": "1"
+      "birthDate": "5555-11-11",
+      "classId": ""
     }
   ],
   "classes": [

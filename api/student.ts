@@ -10,6 +10,15 @@ export const getStudents = async () => {
     }
 }
 
+export const getOneStudent = async (id:string | number) => {
+    try {
+        const res = await instance.get<Student>(`/students/${id}`);
+        return res.data;
+    } catch(e) {
+        alert("Failed to fetch students!");
+    }
+}
+
 export const createStudent = async (data: Student) => {
     try {
         const res = await instance.post('/students', data);
@@ -19,23 +28,20 @@ export const createStudent = async (data: Student) => {
     }
 }
 
-export const deleteStudent = async (id: string) => {
+export const updateStudent = async (data: Student) => {
     try {
-        const res = await instance.delete(`/students/${id}`, );
+        const res = await instance.put(`/students/${data.id}`, data);
         return res.data;
     } catch(e) {
-        alert("Failed to post data!");
+        alert("Failed to update data!");
     }
 }
 
-
-export const DeleteStudentMutation = ({
-    onSuccess: () => {
-        console.log("Student deleted:");
-        window.location.reload();
-    },
-    onError: (err: unknown) => {
-        alert("Failed to delte!");
-        console.error(err);
+export const deleteStudent = async (id: string | number) => {
+    try {
+        const res = await instance.delete(`/students/${id}`);
+        return res.data;
+    } catch(e) {
+        alert("Failed to delete student!");
     }
-});
+} 

@@ -24,20 +24,6 @@ export function createClassMutation({
     })
 }
 
-export function createStudentMutation({
-    onSuccess,
-    onError,
-}: {
-    onSuccess: (student: Student) => void,
-    onError: (student: Student) => void,
-}) {
-    return useMutation({
-        mutationFn: (data: Student) => createStudent(data),
-        onSuccess,
-        onError
-    })
-}
-
 export function deleteStudentMutation({
     onSuccess,
     onError,

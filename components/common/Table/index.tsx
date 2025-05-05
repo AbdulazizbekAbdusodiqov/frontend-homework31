@@ -3,9 +3,9 @@ import { TableProps } from './types'
 import { TableWrapper } from './Table.styles';
 
 const Table: FC<TableProps> = (props) => {
-	const { columns = [], dataSrc = [], loading = true, actionsCol } = props;
+	const { columns = [], dataSrc = [], loading = true, actionsCol = () => null } = props;
 
-	
+
 
 	const loadingContent = dataSrc.length === 0 && !!loading
 		? <tr>
@@ -25,7 +25,7 @@ const Table: FC<TableProps> = (props) => {
 				<thead>
 					<tr>
 						{columns.map(column => (
-							<th style={{width:`${column.width}%`}} key={column.dataIndex}>{column.title}</th>
+							<th style={{ width: `${column.width}%` }} key={column.dataIndex}>{column.title}</th>
 						))}
 
 					</tr>
@@ -37,7 +37,7 @@ const Table: FC<TableProps> = (props) => {
 						<tr key={data[columns[0]?.dataIndex ?? 'key']}>
 							{columns.map(col => {
 								return col.dataIndex === "actions"
-									? <td style={{width:`${col.width}%`}}>{actionsCol}</td>
+									? <td style={{ width: `${col.width}%` }} key={col.dataIndex}>{actionsCol(data)}</td>
 									: <td key={col.dataIndex}>{data[col.dataIndex]}</td>
 							})}
 						</tr>

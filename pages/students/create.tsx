@@ -1,8 +1,8 @@
 import React from 'react'
-import { StudentCreate } from '@/app'
+import { StudentCreateUpdate } from '@/app'
 
 const StudentCreatePage = () => {
-    return <StudentCreate />
+    return <StudentCreateUpdate />
 }
 
 export default StudentCreatePage
