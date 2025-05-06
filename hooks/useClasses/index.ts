@@ -1,6 +1,5 @@
-import { createStudent,deleteStudent } from "@/api";
-import { createClass, getClasses } from "@/api/class";
-import { Class, Student } from "@/types";
+import { createClass, getClasses,deleteClass,updateClass,getOneClass } from "@/api";
+import { Class } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 export function useClasses() {
@@ -23,16 +22,38 @@ export function createClassMutation({
         onError
     })
 }
-
-export function deleteStudentMutation({
+export function updateClassMutation({
     onSuccess,
     onError,
 }: {
-    onSuccess: (student: Student) => void,
-    onError: (student: Student) => void,
+    onSuccess: (data: unknown) => void,
+    onError: (error: unknown) => void,
 }) {
     return useMutation({
-        mutationFn: (id: string) => deleteStudent(id),
+        mutationFn: (data: Class) => updateClass(data),
+        onSuccess,
+        onError
+    })
+}
+
+export function useSingleClass(params: any) {
+    return useQuery({
+        queryFn: () => getOneClass(params?.id),
+        queryKey: ["one-class"],
+        enabled: !!params?.id,
+    });
+}
+
+
+export function deleteClassMutation({
+    onSuccess,
+    onError,
+}: {
+    onSuccess: (classes: Class) => void,
+    onError: (classes: Class) => void,
+}) {
+    return useMutation({
+        mutationFn: (id: string) => deleteClass(id),
         onSuccess,
         onError
     })

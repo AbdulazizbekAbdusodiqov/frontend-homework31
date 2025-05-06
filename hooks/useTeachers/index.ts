@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { createTeachers, deleteTeacher,  getTeachers } from "../../api/teacher";
+import { createTeachers, deleteTeacher,  getTeachers,getOneTeacher,updateTeachers } from "../../api/teacher";
 import { Teacher } from "../../types";
 
 export function useTeachers() {
@@ -22,6 +22,30 @@ export function createTeacherMutation({
         onError
     })
 }
+
+export function updateTeacherMutation({
+    onSuccess,
+    onError,
+}: {
+    onSuccess: (data: unknown) => void,
+    onError: (error: unknown) => void,
+}) {
+    return useMutation({
+        mutationFn: (data: Teacher) => updateTeachers(data),
+        onSuccess,
+        onError
+    })
+}
+
+export function useSingleTeacher(params: any) {
+    return useQuery({
+        queryFn: () => getOneTeacher(params?.id),
+        queryKey: ["one-teacher"],
+        enabled: !!params?.id,
+    });
+}
+
+
 
 export function deleteTeacherMutation({
     onSuccess,

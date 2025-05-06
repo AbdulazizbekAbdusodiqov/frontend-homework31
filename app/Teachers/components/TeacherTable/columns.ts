@@ -1,18 +1,27 @@
 export const teacherTableCols = [
     {
         title: "First name",
-        dataIndex: "firstName"
+        dataIndex: "firstName",
+        width:23
     },
     {
         title: "Last name",
-        dataIndex: "lastName"
+        dataIndex: "lastName",
+        width:23
     },
     {
         title: "Classes",
-        dataIndex: "classes"
+        dataIndex: "classes",
+        width:23
     },
     {
         title: "Birth date",
-        dataIndex: "birthDate"
+        dataIndex: "birthDate",
+        width:23
+    },
+    {
+        title: "Actions",
+        dataIndex: "actions",
+        width:6
     }
 ]

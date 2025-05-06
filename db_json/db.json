@@ -18,21 +18,15 @@
   "classes": [
     {
       "id": "1",
-      "name": "Urushqoqlar",
-      "studentCount": 1,
-      "teacherId": 1
+      "name": "Urushqoqlar2",
+      "studentCount": "1",
+      "teacherId": "1"
     },
     {
       "id": "1",
       "name": "Urushqoqlar",
       "studentCount": 1,
       "teacherId": 1
-    },
-    {
-      "id": "1746429036176",
-      "name": "dwdqwdqwdq",
-      "studentCount": 0,
-      "teacherId": ""
     }
   ],
   "teachers": [
@@ -40,23 +34,7 @@
       "id": "1",
       "firstName": "Lola",
       "lastName": "Ahmedova",
-      "classes": [
-        1
-      ],
-      "birthDate": "11-11-1989"
-    },
-    {
-      "id": "1746423375601",
-      "firstName": "Abdulazizbek",
-      "lastName": "Abdusodiqov",
-      "birthDate": "2006-11-11",
-      "classes": []
-    },
-    {
-      "id": "1746426762549",
-      "firstName": "Abdulazizbek",
-      "lastName": "Abdusodiqov",
-      "birthDate": "275760-05-10",
+      "birthDate": "1980-02-02",
       "classes": []
     }
   ],

@@ -5,6 +5,7 @@ import { createStudentMutation, useClasses, useSingleStudent, updateStudentMutat
 import { getOptionFromDataAdapter } from '@/utils'
 import { useRouter } from 'next/router'
 import { useParams } from 'next/navigation'
+import { toast } from 'react-toastify'
 
 const CreateUpdateStudent = () => {
     const router = useRouter();
@@ -42,30 +43,27 @@ const CreateUpdateStudent = () => {
         }
     },[params?.id, student])
     
-    console.log(student);
 
 
     const { data: classes = [] } = useClasses();
 
     const studentMutation = createStudentMutation({
-        onSuccess: (student) => {
-            console.log("Student Created: ", student);
+        onSuccess: () => {
+            toast.success("Student successfully created")
             router.push('/students');
         },
-        onError: (err) => {
-            alert("Failed to create!");
-            console.error(err);
+        onError: (err:any) => {
+            toast.error("Something went wrong"+err.status)
         }
     });
     
     const studentUpdateMutation = updateStudentMutation({
         onSuccess: (student) => {
-            console.log("Student Created: ", student);
+            toast.success("Student successfully updated")
             router.push('/students');
         },
-        onError: (err) => {
-            alert("Failed to create!");
-            console.error(err);
+        onError: (err:any) => {
+            toast.error("Something went wrong"+err.status)
         }
     });
 

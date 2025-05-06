@@ -18,7 +18,6 @@ const StudentsTable = () => {
             toast.success("User removed!")
         },
         onError: (err: any) => {
-            console.error(err)
             toast.error(`something went wrong! ${err?.status}`)
         }
     })

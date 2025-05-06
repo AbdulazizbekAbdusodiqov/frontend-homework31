@@ -1,52 +1,99 @@
-import React, { FormEvent } from 'react'
-import { createClassMutation, createTeacherMutation } from '@/hooks'
+import React, { FormEvent, useEffect, useState } from 'react'
+import { createClassMutation, updateClassMutation, useSingleTeacher,useSingleClass } from '@/hooks'
 import { useRouter } from 'next/router'
 import { ClassesCreateWrapper } from './Classes.styles'
 import { Button, Input } from '../../components'
+import { useParams } from 'next/navigation'
+import { toast } from 'react-toastify'
 
-const CreateClass = () => {
+const CreateUpdateClass = () => {
     const router = useRouter();
+    const [classValues, setClassValues] = useState({
+        name: "",
+        studentCount: 0,
+        teacherId: 0
+    })
+    const params = useParams()
+    const isEditMode = !!params?.id;
 
 
     const classMutation = createClassMutation({
-        onSuccess: (createdClass: unknown) => {
-            console.log("Class Created: ", createdClass);
+        onSuccess: () => {
+            toast.success("class successfully created!")
             router.push('/classes');
         },
         onError: (err: unknown) => {
             alert("Failed to create!");
-            console.error(err);
         }
     });
+    
+    const classUpdateMutation = updateClassMutation({
+        onSuccess: () => {
+            toast.success("class successfully updated!")
+            router.push('/classes');
+        },
+        onError: (err: any) => {
+            alert("Failed to create!");
+        }
+    });
+
+        const { data: classes, isLoading } = useSingleClass({
+            id: params?.id
+        })
+    
+        
+        useEffect(() => {
+            if (classes) {
+                setClassValues({
+                    name:classes.name,
+                    studentCount: classes.studentCount as number,
+                    teacherId:classes.teacherId as number
+                })
+            }
+    
+        }, [params?.id, classes])
+    
+
+    const handleChange = (e: any) => {
+
+        setClassValues({
+            ...classValues,
+            [e.target.name]: e.target.value
+        })
+    }
+
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const {
-            name,
-        } = e.target as typeof e.target & {
-            name: HTMLInputElement,
-        };
 
         const newClass = {
             id: `${Date.now()}`,
-            name: name.value,
-            studentCount:0,
-            teacherId:"",
+            name: classValues.name,
+            studentCount: classValues.studentCount,
+            teacherId: classValues.teacherId,
         }
+        if (isEditMode) newClass.id = params?.id as string
 
-        classMutation.mutate(newClass);
+        !isEditMode
+            ? classMutation.mutate(newClass)
+            : classUpdateMutation.mutate(newClass);
     }
 
     return (
         <ClassesCreateWrapper>
-            <h1>New Class</h1>
+            <h1>{isEditMode ? "Update" : "New"} Class</h1>
             <form onSubmit={handleSubmit}>
-                <Input name='name' type='text' placeholder='First name' />
+                <Input value={classValues.name} onChange={handleChange} name='name' type='text' placeholder='Name' />
+                {isEditMode?(<>
+                    <Input value={classValues.studentCount} onChange={handleChange} name='studentCount' type='number' />
+                    <Input value={classValues.teacherId} onChange={handleChange} name='teacherId' type='number' />
+                </>
+                ):null}
                 <Button>Save</Button>
             </form>
         </ClassesCreateWrapper>
     )
 }
 
-export default CreateClass
+export default CreateUpdateClass
